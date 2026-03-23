@@ -36,7 +36,7 @@ def main():
         with open(html_file_path, 'r', encoding='utf-8') as f:
             html_content = f.read()
 
-        st.components.class11_ai_oneshot_v2.html(html_content, height=1200, scrolling=True)
+        st.components.html(html_content, height=1200, scrolling=True)
     else:
         st.error(f"Could not find the file: {html_file_path}. Please make sure you are running the app from the correct directory.")
 

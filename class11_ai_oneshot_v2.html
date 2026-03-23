@@ -1,0 +1,2648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Class 11 AI — One Shot | CBSE 2025-26</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@300;400;600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0f1014;
+  --ink2: #1c1e27;
+  --ink3: #2b2e3c;
+  --paper: #f5f3ee;
+  --paper2: #ede9e1;
+  --paper3: #e3ddd2;
+  --accent: #c84b2f;
+  --accent2: #2563ae;
+  --accent3: #1a7a4a;
+  --accent4: #8b3fb5;
+  --accent5: #c9720e;
+  --line: rgba(15,16,20,0.12);
+  --line2: rgba(15,16,20,0.07);
+  --fs-display: clamp(2.2rem, 4vw, 3.6rem);
+  --fs-h1: clamp(1.5rem, 2.5vw, 2rem);
+  --fs-h2: clamp(1.1rem, 1.8vw, 1.4rem);
+  --fs-body: clamp(0.85rem, 1.2vw, 0.95rem);
+  --fs-mono: clamp(0.75rem, 1vw, 0.82rem);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 400;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* ── LAYOUT ── */
+.wrapper {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  grid-template-rows: auto 1fr;
+  min-height: 100vh;
+}
+
+/* ── SIDEBAR ── */
+.sidebar {
+  grid-column: 1;
+  grid-row: 1 / 3;
+  background: var(--ink);
+  color: var(--paper);
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.15) transparent;
+}
+
+.sidebar::-webkit-scrollbar { width: 4px; }
+.sidebar::-webkit-scrollbar-track { background: transparent; }
+.sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 4px; }
+
+.sidebar-header {
+  padding: 2rem 1.6rem 1.5rem;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.sidebar-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 0.6rem;
+}
+
+.sidebar-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.45rem;
+  line-height: 1.2;
+  color: var(--paper);
+  margin-bottom: 0.35rem;
+}
+
+.sidebar-sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.06em;
+}
+
+/* Marks mini chart in sidebar */
+.sidebar-marks {
+  padding: 1.2rem 1.6rem;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.sidebar-marks-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 0.8rem;
+}
+
+.marks-mini-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 5px;
+}
+
+.marks-mini-label {
+  font-size: 0.68rem;
+  color: rgba(255,255,255,0.5);
+  width: 58px;
+  flex-shrink: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.marks-mini-bar-wrap {
+  flex: 1;
+  height: 3px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.marks-mini-bar {
+  height: 3px;
+  border-radius: 2px;
+  transition: width 1s ease;
+  width: 0;
+}
+
+.marks-mini-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  color: rgba(255,255,255,0.35);
+  width: 22px;
+  text-align: right;
+}
+
+/* Sidebar NAV */
+.sidebar-nav {
+  flex: 1;
+  padding: 0.8rem 0;
+}
+
+.nav-section {
+  padding: 0.5rem 1.6rem 0.2rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.2);
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0.55rem 1.6rem;
+  text-decoration: none;
+  color: rgba(255,255,255,0.5);
+  font-size: 0.82rem;
+  font-weight: 400;
+  transition: all 0.18s;
+  border-left: 2px solid transparent;
+  position: relative;
+}
+
+.nav-link:hover {
+  color: var(--paper);
+  background: rgba(255,255,255,0.05);
+  border-left-color: rgba(255,255,255,0.2);
+}
+
+.nav-link.active {
+  color: var(--paper);
+  border-left-color: var(--accent);
+  background: rgba(200,75,47,0.12);
+}
+
+.nav-link .nav-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.58rem;
+  color: rgba(255,255,255,0.2);
+  width: 18px;
+  flex-shrink: 0;
+}
+
+.nav-link.active .nav-num { color: var(--accent); }
+
+.nav-link .nav-marks {
+  margin-left: auto;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.58rem;
+  color: rgba(255,255,255,0.18);
+}
+
+/* Sidebar footer */
+.sidebar-footer {
+  padding: 1rem 1.6rem;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.58rem;
+  color: rgba(255,255,255,0.2);
+  line-height: 1.8;
+}
+
+.progress-ring-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.progress-ring-wrap svg { flex-shrink: 0; }
+#progress-ring-circle {
+  transition: stroke-dashoffset 0.4s;
+  stroke-dasharray: 75.4;
+  stroke-dashoffset: 75.4;
+}
+
+/* ── MAIN CONTENT ── */
+.main {
+  grid-column: 2;
+  grid-row: 1 / 3;
+  overflow-y: auto;
+}
+
+/* HERO */
+.hero {
+  background: var(--ink2);
+  color: var(--paper);
+  padding: 4.5rem 4rem 3.5rem;
+  position: relative;
+  overflow: hidden;
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+/* Animated matrix rain in hero */
+#hero-canvas {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  opacity: 0.07;
+  pointer-events: none;
+}
+
+.hero-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.hero-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: var(--fs-display);
+  line-height: 1.1;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.hero-title em {
+  font-style: italic;
+  color: rgba(245,243,238,0.5);
+}
+
+.hero-desc {
+  font-size: var(--fs-body);
+  color: rgba(245,243,238,0.55);
+  max-width: 560px;
+  line-height: 1.7;
+  position: relative;
+  margin-bottom: 2rem;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.hero-pills {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.hero-pill {
+  padding: 5px 14px;
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 100px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.04em;
+}
+
+/* ── CONTENT AREA ── */
+.content {
+  padding: 3rem 4rem 5rem;
+}
+
+/* ── UNIT SECTION ── */
+.unit-section {
+  margin-bottom: 5rem;
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.unit-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.unit-head {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: start;
+  gap: 1.5rem;
+  margin-bottom: 2.2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.unit-big-num {
+  font-family: 'DM Serif Display', serif;
+  font-size: 4rem;
+  line-height: 1;
+  color: var(--line2);
+  user-select: none;
+  margin-top: -0.5rem;
+}
+
+.unit-head-text {}
+
+.unit-tag {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 4px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.unit-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: var(--fs-h1);
+  line-height: 1.2;
+  margin-bottom: 0.4rem;
+}
+
+.unit-meta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.unit-meta span {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem;
+  color: rgba(15,16,20,0.4);
+  letter-spacing: 0.04em;
+}
+
+.unit-marks-badge {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 0.6rem 1.1rem;
+  border-radius: 8px;
+  text-align: center;
+  flex-shrink: 0;
+  align-self: center;
+}
+
+.unit-marks-badge .mark-num {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.6rem;
+  line-height: 1;
+  display: block;
+}
+
+.unit-marks-badge .mark-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.1em;
+  opacity: 0.45;
+  text-transform: uppercase;
+}
+
+/* ── TOPIC GRID ── */
+.topic-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  margin-bottom: 1.6rem;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.topic-cell {
+  background: var(--paper);
+  padding: 1.3rem 1.4rem;
+  transition: background 0.18s;
+  position: relative;
+}
+
+.topic-cell:hover { background: var(--paper2); }
+
+.topic-cell-icon {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  display: block;
+  line-height: 1;
+}
+
+.topic-cell-title {
+  font-size: 0.88rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--ink);
+}
+
+.topic-cell-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.topic-cell-list li {
+  font-size: 0.78rem;
+  color: rgba(15,16,20,0.6);
+  padding-left: 12px;
+  position: relative;
+  line-height: 1.5;
+}
+
+.topic-cell-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.4;
+}
+
+/* ── VISUAL EXPLAINERS ── */
+.viz-block {
+  background: var(--ink);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 1.6rem;
+}
+
+.viz-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.75rem 1.2rem;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.viz-header-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+}
+
+.viz-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+}
+
+.viz-body {
+  padding: 1.4rem 1.4rem;
+}
+
+/* ── KEY TERMS STRIP ── */
+.key-terms-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 1.6rem;
+}
+
+.key-term {
+  padding: 4px 10px;
+  border-radius: 5px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  border: 1px solid;
+  cursor: default;
+  transition: all 0.15s;
+}
+
+.key-term:hover { transform: translateY(-1px); }
+
+/* ── CALLOUT BOXES ── */
+.callout {
+  border-left: 3px solid;
+  padding: 1rem 1.2rem;
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 1.4rem;
+}
+
+.callout-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.callout-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.callout-list li {
+  font-size: 0.82rem;
+  padding-left: 16px;
+  position: relative;
+  line-height: 1.6;
+}
+
+.callout-list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  opacity: 0.5;
+  font-size: 0.72rem;
+  top: 2px;
+}
+
+.callout.remember {
+  background: rgba(200,75,47,0.05);
+  border-color: var(--accent);
+}
+.callout.remember .callout-title { color: var(--accent); }
+
+.callout.tip {
+  background: rgba(37,99,174,0.05);
+  border-color: var(--accent2);
+}
+.callout.tip .callout-title { color: var(--accent2); }
+
+/* ── CODE BLOCKS ── */
+.code-block {
+  background: var(--ink);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 1.6rem;
+}
+
+.code-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0.6rem 1.2rem;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.code-dot { width: 8px; height: 8px; border-radius: 50%; }
+.code-dot.red { background: #ff5f57; }
+.code-dot.yellow { background: #febc2e; }
+.code-dot.green { background: #28c840; }
+
+.code-filename {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: rgba(255,255,255,0.3);
+  margin-left: 6px;
+}
+
+.code-body {
+  padding: 1.2rem 1.4rem;
+  overflow-x: auto;
+}
+
+.code-body pre {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: var(--fs-mono);
+  line-height: 1.8;
+  color: rgba(245,243,238,0.85);
+  white-space: pre;
+}
+
+.kw { color: #c792ea; }
+.fn { color: #82aaff; }
+.st { color: #c3e88d; }
+.cm { color: #546e7a; }
+.nm { color: #f78c6c; }
+.cl { color: #ffcb6b; }
+.hl { background: rgba(255,255,255,0.05); border-radius: 2px; padding: 0 2px; }
+
+/* ── COMPARISON TABLE ── */
+.cmp-table-wrap {
+  overflow-x: auto;
+  margin-bottom: 1.6rem;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+}
+
+.cmp-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+}
+
+.cmp-table th {
+  background: var(--ink);
+  color: rgba(255,255,255,0.6);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 10px 14px;
+  text-align: left;
+  font-weight: 400;
+}
+
+.cmp-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--line2);
+  vertical-align: top;
+  line-height: 1.5;
+  color: rgba(15,16,20,0.7);
+}
+
+.cmp-table tr:last-child td { border-bottom: none; }
+.cmp-table tr:hover td { background: var(--paper2); }
+.cmp-table td.emph { color: var(--ink); font-weight: 500; }
+
+/* ── INTERACTIVE VISUALIZATIONS ── */
+.viz-interactive {
+  background: var(--paper2);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 1.4rem;
+  margin-bottom: 1.6rem;
+}
+
+.viz-interactive-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(15,16,20,0.35);
+  margin-bottom: 1.2rem;
+}
+
+.control-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+
+.control-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: rgba(15,16,20,0.5);
+  width: 120px;
+  flex-shrink: 0;
+}
+
+.control-row input[type=range] {
+  flex: 1;
+  accent-color: var(--accent);
+}
+
+.control-val {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--accent);
+  width: 50px;
+  text-align: right;
+}
+
+/* ── AI HIERARCHY VISUAL ── */
+.ai-hierarchy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  padding: 1.4rem 1rem;
+  position: relative;
+}
+
+.hierarchy-layer {
+  width: 100%;
+  max-width: 580px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0;
+}
+
+.hierarchy-band {
+  text-align: center;
+  padding: 0.9rem 1rem;
+  border-radius: 0;
+  font-size: 0.82rem;
+  font-weight: 500;
+  position: relative;
+  cursor: pointer;
+  transition: filter 0.2s;
+}
+
+.hierarchy-band:hover { filter: brightness(1.1); }
+
+.hierarchy-band .band-sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  opacity: 0.6;
+  font-weight: 300;
+  margin-top: 2px;
+  display: block;
+}
+
+/* ── AI PROJECT CYCLE ── */
+.cycle-steps {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+  margin-bottom: 1.4rem;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+
+.cycle-step {
+  background: var(--paper);
+  padding: 1.1rem 0.9rem;
+  border-right: 1px solid var(--line);
+  position: relative;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.cycle-step:last-child { border-right: none; }
+.cycle-step:hover { background: var(--paper2); }
+.cycle-step.active-step { background: var(--ink); color: var(--paper); }
+
+.cycle-step-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.58rem;
+  color: rgba(15,16,20,0.3);
+  margin-bottom: 4px;
+}
+
+.cycle-step.active-step .cycle-step-num { color: rgba(255,255,255,0.35); }
+
+.cycle-step-name {
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.cycle-step-desc {
+  font-size: 0.7rem;
+  color: rgba(15,16,20,0.5);
+  line-height: 1.4;
+}
+
+.cycle-step.active-step .cycle-step-desc { color: rgba(255,255,255,0.5); }
+
+.cycle-arrow {
+  position: absolute;
+  right: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  background: var(--paper2);
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+  color: rgba(15,16,20,0.4);
+}
+
+.cycle-step.active-step + .cycle-step .cycle-arrow { background: var(--ink); }
+
+/* ── ML ALGORITHM VISUALIZER ── */
+.ml-viz-canvas-wrap {
+  position: relative;
+  width: 100%;
+  height: 260px;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 0.8rem;
+  cursor: crosshair;
+}
+
+#mlCanvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.ml-controls {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 0.8rem;
+}
+
+.ml-btn {
+  padding: 5px 12px;
+  border-radius: 5px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  cursor: pointer;
+  transition: all 0.15s;
+  color: var(--ink);
+}
+
+.ml-btn:hover { background: var(--paper2); }
+.ml-btn.active-ml { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+.ml-status {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  color: rgba(15,16,20,0.4);
+}
+
+/* ── NLP PIPELINE VISUAL ── */
+.nlp-pipeline {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  margin-bottom: 1.4rem;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+
+.nlp-stage {
+  flex: 1;
+  padding: 1rem 0.8rem;
+  border-right: 1px solid var(--line);
+  cursor: pointer;
+  transition: background 0.18s;
+  min-width: 0;
+}
+
+.nlp-stage:last-child { border-right: none; }
+.nlp-stage:hover { background: var(--paper2); }
+
+.nlp-stage-name {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(15,16,20,0.4);
+  margin-bottom: 0.4rem;
+}
+
+.nlp-stage-example {
+  font-size: 0.78rem;
+  color: var(--ink);
+  font-weight: 500;
+  word-break: break-all;
+  line-height: 1.4;
+}
+
+.nlp-stage-arrow {
+  flex-shrink: 0;
+  width: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(15,16,20,0.2);
+  font-size: 10px;
+  background: var(--paper2);
+}
+
+/* ── ETHICS RADAR ── */
+#ethicsCanvas {
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+/* ── DATA TYPES VISUAL ── */
+.data-types-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  margin-bottom: 1.4rem;
+}
+
+.dt-cell {
+  background: var(--paper);
+  padding: 1.2rem 1rem;
+  transition: background 0.18s;
+}
+
+.dt-cell:hover { background: var(--paper2); }
+
+.dt-cell-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.dt-cell-example {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  color: rgba(15,16,20,0.55);
+  line-height: 1.6;
+}
+
+/* ── SECTION DIVIDER ── */
+.section-divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem 0 2rem;
+}
+
+.section-divider-line { flex: 1; height: 1px; background: var(--line); }
+.section-divider-text {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(15,16,20,0.3);
+}
+
+/* ── COLOR SCHEMES PER UNIT ── */
+.u1-tag { background: rgba(200,75,47,0.1); color: var(--accent); border: 1px solid rgba(200,75,47,0.25); }
+.u2-tag { background: rgba(37,99,174,0.1); color: var(--accent2); border: 1px solid rgba(37,99,174,0.25); }
+.u3-tag { background: rgba(26,122,74,0.1); color: var(--accent3); border: 1px solid rgba(26,122,74,0.25); }
+.u4-tag { background: rgba(139,63,181,0.1); color: var(--accent4); border: 1px solid rgba(139,63,181,0.25); }
+.u5-tag { background: rgba(201,114,14,0.1); color: var(--accent5); border: 1px solid rgba(201,114,14,0.25); }
+.u6-tag { background: rgba(200,75,47,0.1); color: var(--accent); border: 1px solid rgba(200,75,47,0.25); }
+.u7-tag { background: rgba(37,99,174,0.1); color: var(--accent2); border: 1px solid rgba(37,99,174,0.25); }
+.u8-tag { background: rgba(26,122,74,0.1); color: var(--accent3); border: 1px solid rgba(26,122,74,0.25); }
+
+/* Key term colors */
+.kt-red { background: rgba(200,75,47,0.07); color: rgba(160,50,30,0.9); border-color: rgba(200,75,47,0.2); }
+.kt-blue { background: rgba(37,99,174,0.07); color: rgba(25,70,130,0.9); border-color: rgba(37,99,174,0.2); }
+.kt-green { background: rgba(26,122,74,0.07); color: rgba(18,90,50,0.9); border-color: rgba(26,122,74,0.2); }
+.kt-purple { background: rgba(139,63,181,0.07); color: rgba(100,40,140,0.9); border-color: rgba(139,63,181,0.2); }
+.kt-amber { background: rgba(201,114,14,0.07); color: rgba(150,80,10,0.9); border-color: rgba(201,114,14,0.2); }
+
+/* ── RESPONSIVE (TABLET) ── */
+@media (max-width: 960px) {
+  .wrapper { grid-template-columns: 240px 1fr; }
+  .content { padding: 2rem 2.5rem 4rem; }
+  .hero { padding: 3rem 2.5rem 2.5rem; }
+}
+
+@media (max-width: 720px) {
+  .wrapper { grid-template-columns: 1fr; }
+  .sidebar { display: none; }
+  .main { grid-column: 1; }
+  .content { padding: 1.5rem 1.5rem 3rem; }
+  .hero { padding: 2.5rem 1.5rem 2rem; }
+  .topic-grid { grid-template-columns: 1fr; }
+  .cycle-steps { grid-template-columns: 1fr 1fr; }
+  .data-types-grid { grid-template-columns: 1fr; }
+  .unit-head { grid-template-columns: auto 1fr; }
+  .unit-big-num { font-size: 2.5rem; }
+  .unit-marks-badge { display: none; }
+  .nlp-pipeline { flex-direction: column; }
+  .nlp-stage-arrow { transform: rotate(90deg); width: 100%; height: 24px; }
+}
+
+@media (max-width: 480px) {
+  .cycle-steps { grid-template-columns: 1fr; }
+  .ml-controls { flex-direction: column; }
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(20px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+@keyframes pulseRed {
+  0%,100% { opacity:1; } 50% { opacity:0.4; }
+}
+.pulse { animation: pulseRed 2s infinite; }
+
+/* ── INLINE LABEL COLOR HELPERS ── */
+.tag-red { color: var(--accent); font-weight:600; }
+.tag-blue { color: var(--accent2); font-weight:600; }
+.tag-green { color: var(--accent3); font-weight:600; }
+
+/* Back to top */
+.back-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 40px;
+  height: 40px;
+  background: var(--ink);
+  color: var(--paper);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 100;
+}
+.back-top.show { opacity:1; }
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+
+<!-- ═══ SIDEBAR ═══ -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-eyebrow">CBSE · Code 843 · 2025-26</div>
+    <div class="sidebar-title">Class 11<br>Artificial<br>Intelligence</div>
+    <div class="sidebar-sub">One Shot Revision</div>
+  </div>
+
+  <div class="sidebar-marks">
+    <div class="sidebar-marks-title">Marks at a glance</div>
+    <div class="marks-mini-row">
+      <div class="marks-mini-label">Intro AI</div>
+      <div class="marks-mini-bar-wrap"><div class="marks-mini-bar" data-w="70" style="background:#c84b2f"></div></div>
+      <div class="marks-mini-num">14</div>
+    </div>
+    <div class="marks-mini-row">
+      <div class="marks-mini-label">AI Future</div>
+      <div class="marks-mini-bar-wrap"><div class="marks-mini-bar" data-w="45" style="background:#2563ae"></div></div>
+      <div class="marks-mini-num">9</div>
+    </div>
+    <div class="marks-mini-row">
+      <div class="marks-mini-label">Python</div>
+      <div class="marks-mini-bar-wrap"><div class="marks-mini-bar" data-w="100" style="background:#1a7a4a"></div></div>
+      <div class="marks-mini-num">25</div>
+    </div>
+    <div class="marks-mini-row">
+      <div class="marks-mini-label">Capstone</div>
+      <div class="marks-mini-bar-wrap"><div class="marks-mini-bar" data-w="80" style="background:#8b3fb5"></div></div>
+      <div class="marks-mini-num">20</div>
+    </div>
+    <div class="marks-mini-row">
+      <div class="marks-mini-label">Data</div>
+      <div class="marks-mini-bar-wrap"><div class="marks-mini-bar" data-w="84" style="background:#c9720e"></div></div>
+      <div class="marks-mini-num">21</div>
+    </div>
+    <div class="marks-mini-row">
+      <div class="marks-mini-label">ML Algo</div>
+      <div class="marks-mini-bar-wrap"><div class="marks-mini-bar" data-w="84" style="background:#c84b2f"></div></div>
+      <div class="marks-mini-num">21</div>
+    </div>
+    <div class="marks-mini-row">
+      <div class="marks-mini-label">NLP</div>
+      <div class="marks-mini-bar-wrap"><div class="marks-mini-bar" data-w="60" style="background:#2563ae"></div></div>
+      <div class="marks-mini-num">15</div>
+    </div>
+    <div class="marks-mini-row">
+      <div class="marks-mini-label">Ethics</div>
+      <div class="marks-mini-bar-wrap"><div class="marks-mini-bar" data-w="36" style="background:#1a7a4a"></div></div>
+      <div class="marks-mini-num">9</div>
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    <div class="nav-section">Theory Units</div>
+    <a href="#unit1" class="nav-link active"><span class="nav-num">01</span>Introduction to AI<span class="nav-marks">14m</span></a>
+    <a href="#unit2" class="nav-link"><span class="nav-num">02</span>Unlocking AI Future<span class="nav-marks">9m</span></a>
+    <a href="#unit3" class="nav-link"><span class="nav-num">03</span>Python Programming<span class="nav-marks">25m</span></a>
+    <a href="#unit4" class="nav-link"><span class="nav-num">04</span>Capstone Project<span class="nav-marks">20m</span></a>
+    <div class="nav-section" style="margin-top:0.5rem">Applied Units</div>
+    <a href="#unit5" class="nav-link"><span class="nav-num">05</span>Data Literacy<span class="nav-marks">21m</span></a>
+    <a href="#unit6" class="nav-link"><span class="nav-num">06</span>ML Algorithms<span class="nav-marks">21m</span></a>
+    <a href="#unit7" class="nav-link"><span class="nav-num">07</span>NLP & Linguistics<span class="nav-marks">15m</span></a>
+    <a href="#unit8" class="nav-link"><span class="nav-num">08</span>AI Ethics<span class="nav-marks">9m</span></a>
+  </nav>
+
+  <div class="sidebar-footer">
+    <div class="progress-ring-wrap">
+      <svg width="28" height="28" viewBox="0 0 28 28">
+        <circle cx="14" cy="14" r="12" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"/>
+        <circle id="progress-ring-circle" cx="14" cy="14" r="12" fill="none" stroke="#c84b2f" stroke-width="2" stroke-linecap="round" transform="rotate(-90 14 14)"/>
+      </svg>
+      <span>Scroll progress: <span id="progress-pct">0%</span></span>
+    </div>
+    Total: 100 marks (Th. 50 + Pr. 50)<br>
+    8 units · 50+ key concepts
+  </div>
+</aside>
+
+<!-- ═══ MAIN ═══ -->
+<main class="main" id="main-content">
+
+<!-- HERO -->
+<header class="hero">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-eyebrow">
+    <span class="pulse" style="display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--accent);margin-right:8px;vertical-align:middle"></span>
+    CBSE 2025-26 · Class XI · Subject Code 843
+  </div>
+  <h1 class="hero-title">One Shot<br><em>Revision</em></h1>
+  <p class="hero-desc">Complete syllabus. All 8 units. Key concepts, animated visualisations, Python code & exam tips — on a single page.</p>
+  <div class="hero-pills">
+    <span class="hero-pill">8 Units</span>
+    <span class="hero-pill">100 Marks</span>
+    <span class="hero-pill">Theory + Practical</span>
+    <span class="hero-pill">Interactive Demos</span>
+    <span class="hero-pill">Python Snippets</span>
+  </div>
+</header>
+
+<div class="content">
+
+<!-- ════════ UNIT 1 ════════ -->
+<section class="unit-section" id="unit1">
+  <div class="unit-head">
+    <div class="unit-big-num">01</div>
+    <div class="unit-head-text">
+      <span class="unit-tag u1-tag">Unit 1</span>
+      <h2 class="unit-title">Introduction: Artificial Intelligence for Everyone</h2>
+      <div class="unit-meta">
+        <span>📚 4 hrs theory</span>
+        <span>🔬 10 hrs practical</span>
+      </div>
+    </div>
+    <div class="unit-marks-badge">
+      <span class="mark-num" style="color:#c84b2f">14</span>
+      <span class="mark-label">marks</span>
+    </div>
+  </div>
+
+  <div class="key-terms-row">
+    <span class="key-term kt-red">Artificial Intelligence</span>
+    <span class="key-term kt-red">Machine Learning</span>
+    <span class="key-term kt-red">Deep Learning</span>
+    <span class="key-term kt-red">Turing Test</span>
+    <span class="key-term kt-blue">Narrow AI</span>
+    <span class="key-term kt-blue">General AI</span>
+    <span class="key-term kt-blue">Super AI</span>
+    <span class="key-term kt-green">Domains of AI</span>
+  </div>
+
+  <!-- AI Hierarchy Animated Visual -->
+  <div class="viz-interactive">
+    <div class="viz-interactive-title">⬡ AI Hierarchy — click any layer</div>
+    <div class="ai-hierarchy" id="aiHierarchy">
+      <div class="hierarchy-layer" style="width:100%">
+        <div class="hierarchy-band" onclick="showAIInfo(0)" style="width:100%;background:#f0ece3;border-radius:8px 8px 0 0;padding:1rem;">
+          <strong>Artificial Intelligence (AI)</strong>
+          <span class="band-sub">Simulation of human intelligence by machines · since 1956</span>
+        </div>
+      </div>
+      <div class="hierarchy-layer" style="width:80%;margin:0 auto">
+        <div class="hierarchy-band" onclick="showAIInfo(1)" style="width:100%;background:#e8e1d6;border-top:1px solid #d5cec4;padding:0.9rem;">
+          <strong>Machine Learning (ML)</strong>
+          <span class="band-sub">Learn from data without being explicitly programmed</span>
+        </div>
+      </div>
+      <div class="hierarchy-layer" style="width:58%;margin:0 auto">
+        <div class="hierarchy-band" onclick="showAIInfo(2)" style="width:100%;background:#ddd6c8;border-top:1px solid #d5cec4;padding:0.9rem;">
+          <strong>Deep Learning</strong>
+          <span class="band-sub">Neural networks with many layers</span>
+        </div>
+      </div>
+      <div class="hierarchy-layer" style="width:38%;margin:0 auto">
+        <div class="hierarchy-band" onclick="showAIInfo(3)" style="width:100%;background:#c84b2f;color:#f5f3ee;border-top:1px solid rgba(0,0,0,0.1);border-radius:0 0 8px 8px;padding:0.9rem;">
+          <strong>Neural Networks</strong>
+          <span class="band-sub" style="color:rgba(245,243,238,0.6)">Inspired by the human brain</span>
+        </div>
+      </div>
+    </div>
+    <div id="ai-info-box" style="font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:rgba(15,16,20,0.5);margin-top:0.8rem;min-height:20px;text-align:center"></div>
+  </div>
+
+  <div class="topic-grid">
+    <div class="topic-cell">
+      <span class="topic-cell-icon">🤖</span>
+      <div class="topic-cell-title">What is AI?</div>
+      <ul class="topic-cell-list">
+        <li>Simulation of human intelligence in machines</li>
+        <li>Can: learn, reason, solve problems, understand language</li>
+        <li>Coined by <strong>John McCarthy</strong> at Dartmouth, 1956</li>
+        <li>AI ≠ human intelligence — it is narrow/task-specific</li>
+      </ul>
+    </div>
+    <div class="topic-cell">
+      <span class="topic-cell-icon">🔭</span>
+      <div class="topic-cell-title">Types of AI (by Capability)</div>
+      <ul class="topic-cell-list">
+        <li><span class="tag-red">Narrow AI</span> — specific tasks (Siri, spam filter, Chess)</li>
+        <li><span class="tag-blue">General AI</span> — human-level intelligence (hypothetical)</li>
+        <li><span class="tag-green">Super AI</span> — surpasses humans (theoretical future)</li>
+      </ul>
+    </div>
+    <div class="topic-cell">
+      <span class="topic-cell-icon">🧩</span>
+      <div class="topic-cell-title">Domains of AI</div>
+      <ul class="topic-cell-list">
+        <li>Computer Vision — face recognition, object detection</li>
+        <li>Natural Language Processing — chatbots, translation</li>
+        <li>Robotics — industrial robots, autonomous machines</li>
+        <li>Expert Systems — rule-based decision making</li>
+        <li>Machine Learning — patterns from data</li>
+      </ul>
+    </div>
+    <div class="topic-cell">
+      <span class="topic-cell-icon">⚖️</span>
+      <div class="topic-cell-title">AI vs Human Intelligence</div>
+      <ul class="topic-cell-list">
+        <li>AI: fast, tireless, no emotions, data-driven</li>
+        <li>Human: creative, emotional, generalises easily</li>
+        <li>AI lacks common sense & self-awareness</li>
+        <li><strong>Turing Test</strong> (Alan Turing, 1950) — can a machine fool a human?</li>
+      </ul>
+    </div>
+    <div class="topic-cell">
+      <span class="topic-cell-icon">📅</span>
+      <div class="topic-cell-title">Evolution of AI</div>
+      <ul class="topic-cell-list">
+        <li>1956 — Dartmouth Conference, AI born</li>
+        <li>1960–80s — Expert Systems (MYCIN, DENDRAL)</li>
+        <li>1997 — Deep Blue beats chess world champion</li>
+        <li>2012 — Deep Learning revolution (AlexNet)</li>
+        <li>2022–24 — LLMs: ChatGPT, Gemini, Claude</li>
+      </ul>
+    </div>
+    <div class="topic-cell">
+      <span class="topic-cell-icon">🌐</span>
+      <div class="topic-cell-title">Applications</div>
+      <ul class="topic-cell-list">
+        <li>Healthcare — disease diagnosis, drug discovery</li>
+        <li>Agriculture — crop monitoring, pest detection</li>
+        <li>Finance — fraud detection, algorithmic trading</li>
+        <li>Transport — self-driving cars</li>
+        <li>Education — personalised tutoring</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout remember">
+    <div class="callout-title">⚡ Must Remember</div>
+    <ul class="callout-list">
+      <li>Hierarchy: <strong>AI ⊃ ML ⊃ Deep Learning ⊃ Neural Networks</strong></li>
+      <li>Turing Test = machine trying to imitate a human in text conversation</li>
+      <li>Current AI is Narrow AI — no machine has achieved General AI yet</li>
+    </ul>
+  </div>
+</section>
+
+<div class="section-divider"><div class="section-divider-line"></div><div class="section-divider-text">Unit 2</div><div class="section-divider-line"></div></div>
+
+<!-- ════════ UNIT 2 ════════ -->
+<section class="unit-section" id="unit2">
+  <div class="unit-head">
+    <div class="unit-big-num">02</div>
+    <div class="unit-head-text">
+      <span class="unit-tag u2-tag">Unit 2</span>
+      <h2 class="unit-title">Unlocking Your Future in AI</h2>
+      <div class="unit-meta">
+        <span>📚 4 hrs theory</span>
+        <span>📝 5+4 marks</span>
+      </div>
+    </div>
+    <div class="unit-marks-badge">
+      <span class="mark-num" style="color:#2563ae">9</span>
+      <span class="mark-label">marks</span>
+    </div>
+  </div>
+
+  <div class="key-terms-row">
+    <span class="key-term kt-blue">AI Project Cycle</span>
+    <span class="key-term kt-blue">Problem Scoping</span>
+    <span class="key-term kt-blue">Data Acquisition</span>
+    <span class="key-term kt-blue">Modelling</span>
+    <span class="key-term kt-blue">Evaluation</span>
+    <span class="key-term kt-red">5W1H Framework</span>
+  </div>
+
+  <!-- Interactive AI Project Cycle -->
+  <div class="viz-interactive">
+    <div class="viz-interactive-title">⬡ AI Project Cycle — click each step</div>
+    <div class="cycle-steps" id="cycleSteps">
+      <div class="cycle-step active-step" onclick="selectStep(0)">
+        <div class="cycle-step-num">STEP 01</div>
+        <div class="cycle-step-name">Problem Scoping</div>
+        <div class="cycle-step-desc">Define what, why, who, where, when, how</div>
+      </div>
+      <div class="cycle-step" onclick="selectStep(1)">
+        <div class="cycle-step-num">STEP 02</div>
+        <div class="cycle-step-name">Data Acquisition</div>
+        <div class="cycle-step-desc">Collect relevant, quality data</div>
+      </div>
+      <div class="cycle-step" onclick="selectStep(2)">
+        <div class="cycle-step-num">STEP 03</div>
+        <div class="cycle-step-name">Data Exploration</div>
+        <div class="cycle-step-desc">EDA — visualise & clean data</div>
+      </div>
+      <div class="cycle-step" onclick="selectStep(3)">
+        <div class="cycle-step-num">STEP 04</div>
+        <div class="cycle-step-name">Modelling</div>
+        <div class="cycle-step-desc">Build, train, test AI model</div>
+      </div>
+      <div class="cycle-step" onclick="selectStep(4)">
+        <div class="cycle-step-num">STEP 05</div>
+        <div class="cycle-step-name">Evaluation</div>
+        <div class="cycle-step-desc">Assess, deploy, iterate</div>
+      </div>
+    </div>
+    <div id="cycle-detail" style="margin-top:0.8rem;padding:0.8rem 1rem;background:rgba(37,99,174,0.07);border-radius:8px;font-size:0.8rem;line-height:1.6;min-height:48px;border-left:3px solid #2563ae;color:rgba(15,16,20,0.7);font-family:'JetBrains Mono',monospace">
+      Define the problem with 5W1H. Ask: What is the problem? Why does it matter? Who are the stakeholders? Where will the solution be used? When? How will AI solve it?
+    </div>
+  </div>
+
+  <div class="topic-grid">
+    <div class="topic-cell">
+      <span class="topic-cell-icon">🎯</span>
+      <div class="topic-cell-title">AI Career Paths</div>
+      <ul class="topic-cell-list">
+        <li>AI/ML Engineer — build & deploy models</li>
+        <li>Data Scientist — analyze & extract insights</li>
+        <li>NLP Engineer — language AI systems</li>
+        <li>Computer Vision Engineer — image/video AI</li>
+        <li>AI Researcher — advance AI theory</li>
+        <li>Prompt Engineer — design AI prompts</li>
+      </ul>
+    </div>
+    <div class="topic-cell">
+      <span class="topic-cell-icon">🛠️</span>
+      <div class="topic-cell-title">Skills for AI</div>
+      <ul class="topic-cell-list">
+        <li>Programming — Python, R</li>
+        <li>Maths — Linear Algebra, Statistics, Calculus</li>
+        <li>Domain knowledge (healthcare, finance…)</li>
+        <li>Data handling & visualisation</li>
+        <li>Critical thinking & problem-solving</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout remember">
+    <div class="callout-title">⚡ Must Remember</div>
+    <ul class="callout-list">
+      <li>AI Project Cycle is <strong>iterative</strong> — you can go back to earlier steps</li>
+      <li>GIGO — Garbage In, Garbage Out: data quality > model complexity</li>
+    </ul>
+  </div>
+</section>
+
+<div class="section-divider"><div class="section-divider-line"></div><div class="section-divider-text">Unit 3</div><div class="section-divider-line"></div></div>
+
+<!-- ════════ UNIT 3 ════════ -->
+<section class="unit-section" id="unit3">
+  <div class="unit-head">
+    <div class="unit-big-num">03</div>
+    <div class="unit-head-text">
+      <span class="unit-tag u3-tag">Unit 3</span>
+      <h2 class="unit-title">Python Programming for AI</h2>
+      <div class="unit-meta">
+        <span>📚 10 hrs theory</span>
+        <span>🔬 20 hrs practical</span>
+      </div>
+    </div>
+    <div class="unit-marks-badge">
+      <span class="mark-num" style="color:#1a7a4a">25</span>
+      <span class="mark-label">marks</span>
+    </div>
+  </div>
+
+  <div class="key-terms-row">
+    <span class="key-term kt-green">Variables & Types</span>
+    <span class="key-term kt-green">Control Flow</span>
+    <span class="key-term kt-green">Functions</span>
+    <span class="key-term kt-green">Lists/Tuples/Dicts</span>
+    <span class="key-term kt-amber">NumPy</span>
+    <span class="key-term kt-amber">Pandas</span>
+    <span class="key-term kt-amber">Matplotlib</span>
+    <span class="key-term kt-red">Scikit-learn</span>
+  </div>
+
+  <!-- Data structures visual -->
+  <div class="data-types-grid">
+    <div class="dt-cell">
+      <div class="dt-cell-label" style="color:#c84b2f">List [ ]</div>
+      <div class="dt-cell-example">[1, "hello", 3.14]<br>ordered · mutable<br>allows duplicates</div>
+    </div>
+    <div class="dt-cell">
+      <div class="dt-cell-label" style="color:#2563ae">Tuple ( )</div>
+      <div class="dt-cell-example">(1, "hello", 3.14)<br>ordered · immutable<br>allows duplicates</div>
+    </div>
+    <div class="dt-cell">
+      <div class="dt-cell-label" style="color:#1a7a4a">Dict { }</div>
+      <div class="dt-cell-example">{'name': 'Riya'}<br>key-value pairs<br>mutable · unique keys</div>
+    </div>
+    <div class="dt-cell">
+      <div class="dt-cell-label" style="color:#8b3fb5">Set { }</div>
+      <div class="dt-cell-example">{1, 2, 3}<br>unordered · mutable<br>no duplicates</div>
+    </div>
+    <div class="dt-cell">
+      <div class="dt-cell-label" style="color:#c9720e">NumPy Array</div>
+      <div class="dt-cell-example">np.array([1,2,3])<br>N-dimensional · typed<br>fast vectorised ops</div>
+    </div>
+    <div class="dt-cell">
+      <div class="dt-cell-label" style="color:#c84b2f">DataFrame</div>
+      <div class="dt-cell-example">pd.DataFrame()<br>2D table with labels<br>rows × columns</div>
+    </div>
+  </div>
+
+  <div class="code-block">
+    <div class="code-header">
+      <span class="code-dot red"></span><span class="code-dot yellow"></span><span class="code-dot green"></span>
+      <span class="code-filename">python_basics.py</span>
+    </div>
+    <div class="code-body"><pre><span class="cm"># ── Data Types ──────────────────────────────────</span>
+x = <span class="nm">10</span>          <span class="cm"># int</span>
+pi = <span class="nm">3.14</span>      <span class="cm"># float</span>
+name = <span class="st">"Riya"</span>  <span class="cm"># str</span>
+flag = <span class="kw">True</span>    <span class="cm"># bool</span>
+
+<span class="cm"># ── Control Flow ────────────────────────────────</span>
+<span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="nm">5</span>):
+    <span class="kw">if</span> i % <span class="nm">2</span> == <span class="nm">0</span>:
+        <span class="fn">print</span>(i, <span class="st">"is even"</span>)
+
+<span class="cm"># ── Functions ───────────────────────────────────</span>
+<span class="kw">def</span> <span class="fn">square</span>(x):
+    <span class="kw">return</span> x ** <span class="nm">2</span>
+
+double = <span class="kw">lambda</span> x: x * <span class="nm">2</span>  <span class="cm"># lambda function</span>
+
+<span class="cm"># ── NumPy ───────────────────────────────────────</span>
+<span class="kw">import</span> numpy <span class="kw">as</span> np
+arr = np.<span class="fn">array</span>([<span class="nm">1</span>, <span class="nm">2</span>, <span class="nm">3</span>, <span class="nm">4</span>, <span class="nm">5</span>])
+<span class="fn">print</span>(arr.mean(), arr.std(), arr.shape)  <span class="cm"># 3.0  1.41  (5,)</span>
+arr_2d = arr.<span class="fn">reshape</span>(<span class="nm">5</span>, <span class="nm">1</span>)             <span class="cm"># column vector</span>
+
+<span class="cm"># ── Pandas ──────────────────────────────────────</span>
+<span class="kw">import</span> pandas <span class="kw">as</span> pd
+df = pd.<span class="fn">read_csv</span>(<span class="st">'students.csv'</span>)
+<span class="fn">print</span>(df.<span class="fn">shape</span>)          <span class="cm"># (rows, cols)</span>
+<span class="fn">print</span>(df.<span class="fn">describe</span>())     <span class="cm"># stats summary</span>
+df[<span class="st">'marks'</span>].<span class="fn">fillna</span>(df[<span class="st">'marks'</span>].mean(), inplace=<span class="kw">True</span>)
+
+<span class="cm"># ── Matplotlib ──────────────────────────────────</span>
+<span class="kw">import</span> matplotlib.pyplot <span class="kw">as</span> plt
+plt.<span class="fn">hist</span>(df[<span class="st">'marks'</span>], bins=<span class="nm">10</span>, color=<span class="st">'steelblue'</span>)
+plt.<span class="fn">title</span>(<span class="st">'Marks Distribution'</span>)
+plt.<span class="fn">show</span>()</pre>
+    </div>
+  </div>
+
+  <div class="callout remember">
+    <div class="callout-title">⚡ Must Remember</div>
+    <ul class="callout-list">
+      <li>Python is <strong>case-sensitive</strong> and <strong>dynamically typed</strong></li>
+      <li>List → mutable; Tuple → immutable; Dict keys → unique & immutable</li>
+      <li>NumPy arrays are <strong>faster</strong> than Python lists for numerical operations</li>
+      <li><code>df.isnull().sum()</code> finds missing values; <code>df.describe()</code> gives stats</li>
+    </ul>
+  </div>
+</section>
+
+<div class="section-divider"><div class="section-divider-line"></div><div class="section-divider-text">Unit 4</div><div class="section-divider-line"></div></div>
+
+<!-- ════════ UNIT 4 ════════ -->
+<section class="unit-section" id="unit4">
+  <div class="unit-head">
+    <div class="unit-big-num">04</div>
+    <div class="unit-head-text">
+      <span class="unit-tag u4-tag">Unit 4</span>
+      <h2 class="unit-title">Introduction to Capstone Project</h2>
+      <div class="unit-meta">
+        <span>📚 6 hrs theory</span>
+        <span>🔬 15 hrs practical</span>
+      </div>
+    </div>
+    <div class="unit-marks-badge">
+      <span class="mark-num" style="color:#8b3fb5">20</span>
+      <span class="mark-label">marks</span>
+    </div>
+  </div>
+
+  <div class="key-terms-row">
+    <span class="key-term kt-purple">Problem Statement</span>
+    <span class="key-term kt-purple">SDGs</span>
+    <span class="key-term kt-purple">Dataset</span>
+    <span class="key-term kt-purple">Prototype</span>
+    <span class="key-term kt-purple">Documentation</span>
+    <span class="key-term kt-blue">5W1H</span>
+    <span class="key-term kt-blue">Kaggle</span>
+    <span class="key-term kt-blue">UCI</span>
+  </div>
+
+  <div class="topic-grid">
+    <div class="topic-cell">
+      <span class="topic-cell-icon">🚀</span>
+      <div class="topic-cell-title">What is a Capstone Project?</div>
+      <ul class="topic-cell-list">
+        <li>Culminating project applying all AI skills</li>
+        <li>Follows the AI Project Cycle end-to-end</li>
+        <li>Solves a real-world problem using AI/ML</li>
+        <li>Must link to UN SDGs (Sustainable Development Goals)</li>
+      </ul>
+    </div>
+    <div class="topic-cell">
+      <span class="topic-cell-icon">📋</span>
+      <div class="topic-cell-title">Problem Statement — 5W1H</div>
+      <ul class="topic-cell-list">
+        <li><span class="tag-red">What?</span> — Define the problem clearly</li>
+        <li><span class="tag-blue">Why?</span> — Importance / impact</li>
+        <li><span class="tag-green">Who?</span> — Stakeholders / beneficiaries</li>
+        <li>Where? — Context / geography</li>
+        <li>When? — Timeframe</li>
+        <li>How? — AI approach</li>
+      </ul>
+    </div>
+    <div class="topic-cell">
+      <span class="topic-cell-icon">🌍</span>
+      <div class="topic-cell-title">SDG Examples</div>
+      <ul class="topic-cell-list">
+        <li>Crop disease AI → <span class="tag-green">SDG 2</span> (Zero Hunger)</li>
+        <li>Mental health chatbot → <span class="tag-blue">SDG 3</span> (Good Health)</li>
+        <li>Smart tutoring → <span class="tag-red">SDG 4</span> (Quality Education)</li>
+        <li>Air quality model → <span class="tag-green">SDG 13</span> (Climate Action)</li>
+      </ul>
+    </div>
+    <div class="topic-cell">
+      <span class="topic-cell-icon">🗄️</span>
+      <div class="topic-cell-title">Dataset Sources</div>
+      <ul class="topic-cell-list">
+        <li><strong>Kaggle.com</strong> — 50,000+ datasets</li>
+        <li><strong>UCI ML Repository</strong> — classic datasets</li>
+        <li><strong>data.gov.in</strong> — Indian government data</li>
+        <li><strong>Google Dataset Search</strong> — dataset search engine</li>
+        <li><strong>WHO / World Bank</strong> — health & economic data</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout remember">
+    <div class="callout-title">⚡ Must Remember</div>
+    <ul class="callout-list">
+      <li>Capstone = entire AI Project Cycle applied to a real problem</li>
+      <li>Always link your project to at least one SDG with justification</li>
+      <li>Document every stage: proposal → EDA report → model results → presentation</li>
+    </ul>
+  </div>
+</section>
+
+<div class="section-divider"><div class="section-divider-line"></div><div class="section-divider-text">Unit 5</div><div class="section-divider-line"></div></div>
+
+<!-- ════════ UNIT 5 ════════ -->
+<section class="unit-section" id="unit5">
+  <div class="unit-head">
+    <div class="unit-big-num">05</div>
+    <div class="unit-head-text">
+      <span class="unit-tag u5-tag">Unit 5</span>
+      <h2 class="unit-title">Data Literacy — Collection to Analysis</h2>
+      <div class="unit-meta">
+        <span>📚 6 hrs theory</span>
+        <span>🔬 15 hrs practical</span>
+      </div>
+    </div>
+    <div class="unit-marks-badge">
+      <span class="mark-num" style="color:#c9720e">21</span>
+      <span class="mark-label">marks</span>
+    </div>
+  </div>
+
+  <div class="key-terms-row">
+    <span class="key-term kt-amber">Structured Data</span>
+    <span class="key-term kt-amber">Unstructured Data</span>
+    <span class="key-term kt-amber">EDA</span>
+    <span class="key-term kt-amber">Missing Values</span>
+    <span class="key-term kt-red">Outliers</span>
+    <span class="key-term kt-red">Mean/Median/Mode</span>
+    <span class="key-term kt-blue">Standard Deviation</span>
+    <span class="key-term kt-blue">Correlation</span>
+  </div>
+
+  <!-- Interactive Statistics Demo -->
+  <div class="viz-interactive" id="statsDemo">
+    <div class="viz-interactive-title">⬡ Statistics Explorer — drag the sliders</div>
+    <canvas id="statsCanvas" width="700" height="140" style="width:100%;border-radius:6px;display:block;margin-bottom:0.8rem"></canvas>
+    <div class="control-row">
+      <span class="control-label">Mean (μ)</span>
+      <input type="range" id="meanSlider" min="10" max="90" value="50" oninput="updateStats()">
+      <span class="control-val" id="meanVal">50</span>
+    </div>
+    <div class="control-row">
+      <span class="control-label">Std Dev (σ)</span>
+      <input type="range" id="stdSlider" min="2" max="30" value="12" oninput="updateStats()">
+      <span class="control-val" id="stdVal">12</span>
+    </div>
+    <div style="display:flex;gap:1.5rem;flex-wrap:wrap;margin-top:0.4rem">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:rgba(15,16,20,0.5)">Mean: <span id="s-mean" style="color:#c84b2f;font-weight:600">50.0</span></span>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:rgba(15,16,20,0.5)">Std Dev: <span id="s-std" style="color:#2563ae;font-weight:600">12.0</span></span>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:rgba(15,16,20,0.5)">68% within: <span id="s-range" style="color:#1a7a4a;font-weight:600">38–62</span></span>
+    </div>
+  </div>
+
+  <div class="topic-grid">
+    <div class="topic-cell">
+      <span class="topic-cell-icon">📊</span>
+      <div class="topic-cell-title">Types of Data</div>
+      <ul class="topic-cell-list">
+        <li><span class="tag-green">Structured</span> — rows/columns (CSV, DB)</li>
+        <li><span class="tag-red">Unstructured</span> — images, audio, text, video</li>
+        <li><span class="tag-blue">Semi-structured</span> — JSON, XML, HTML</li>
+        <li>Quantitative — numerical (height, marks)</li>
+        <li>Qualitative — categorical (colour, gender)</li>
+      </ul>
+    </div>
+    <div class="topic-cell">
+      <span class="topic-cell-icon">🧹</span>
+      <div class="topic-cell-title">Data Cleaning</div>
+      <ul class="topic-cell-list">
+        <li>Handle missing: fillna() / dropna()</li>
+        <li>Remove duplicates: drop_duplicates()</li>
+        <li>Fix data types: astype(int)</li>
+        <li>Detect outliers: IQR or Z-score method</li>
+        <li>Normalise or standardise values</li>
+      </ul>
+    </div>
+    <div class="topic-cell">
+      <span class="topic-cell-icon">🔍</span>
+      <div class="topic-cell-title">EDA Commands</div>
+      <ul class="topic-cell-list">
+        <li>df.shape — (rows, columns)</li>
+        <li>df.describe() — stats summary</li>
+        <li>df.info() — dtypes & null count</li>
+        <li>df.value_counts() — frequency</li>
+        <li>df.corr() — correlation matrix</li>
+      </ul>
+    </div>
+    <div class="topic-cell">
+      <span class="topic-cell-icon">📐</span>
+      <div class="topic-cell-title">Key Statistics</div>
+      <ul class="topic-cell-list">
+        <li><span class="tag-red">Mean</span> — Σx / n (average)</li>
+        <li><span class="tag-blue">Median</span> — middle value when sorted</li>
+        <li><span class="tag-green">Mode</span> — most frequent value</li>
+        <li>Variance = Σ(x−μ)² / n</li>
+        <li>Std Dev = √Variance; spread of data</li>
+        <li>Correlation: −1 to +1 (strength of relationship)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="code-block">
+    <div class="code-header">
+      <span class="code-dot red"></span><span class="code-dot yellow"></span><span class="code-dot green"></span>
+      <span class="code-filename">eda.py</span>
+    </div>
+    <div class="code-body"><pre><span class="kw">import</span> pandas <span class="kw">as</span> pd
+<span class="kw">import</span> matplotlib.pyplot <span class="kw">as</span> plt
+
+df = pd.<span class="fn">read_csv</span>(<span class="st">'students.csv'</span>)
+
+<span class="cm"># ── Basic EDA ───────────────────────────────────</span>
+<span class="fn">print</span>(df.<span class="fn">shape</span>)               <span class="cm"># (200, 5)</span>
+<span class="fn">print</span>(df.<span class="fn">isnull</span>().<span class="fn">sum</span>())      <span class="cm"># count nulls per col</span>
+<span class="fn">print</span>(df.<span class="fn">describe</span>())          <span class="cm"># min, max, mean, std…</span>
+
+<span class="cm"># ── Handle Missing Values ───────────────────────</span>
+df[<span class="st">'marks'</span>].<span class="fn">fillna</span>(df[<span class="st">'marks'</span>].mean(), inplace=<span class="kw">True</span>)
+
+<span class="cm"># ── Outlier Detection (IQR) ─────────────────────</span>
+Q1 = df[<span class="st">'marks'</span>].quantile(<span class="nm">0.25</span>)
+Q3 = df[<span class="st">'marks'</span>].quantile(<span class="nm">0.75</span>)
+IQR = Q3 - Q1
+outliers = df[(df[<span class="st">'marks'</span>] < Q1 - <span class="nm">1.5</span>*IQR) | (df[<span class="st">'marks'</span>] > Q3 + <span class="nm">1.5</span>*IQR)]
+
+<span class="cm"># ── Visualise ───────────────────────────────────</span>
+fig, axes = plt.<span class="fn">subplots</span>(<span class="nm">1</span>, <span class="nm">2</span>, figsize=(<span class="nm">10</span>, <span class="nm">4</span>))
+axes[<span class="nm">0</span>].<span class="fn">hist</span>(df[<span class="st">'marks'</span>], bins=<span class="nm">15</span>)
+axes[<span class="nm">0</span>].<span class="fn">set_title</span>(<span class="st">'Distribution'</span>)
+axes[<span class="nm">1</span>].<span class="fn">boxplot</span>(df[<span class="st">'marks'</span>])
+axes[<span class="nm">1</span>].<span class="fn">set_title</span>(<span class="st">'Box Plot (outliers visible)'</span>)
+plt.<span class="fn">show</span>()</pre>
+    </div>
+  </div>
+
+  <div class="callout remember">
+    <div class="callout-title">⚡ Must Remember</div>
+    <ul class="callout-list">
+      <li>GIGO — Garbage In, Garbage Out: quality of data → quality of model</li>
+      <li>Normalisation: scale to [0,1]; Standardisation: mean=0, std=1</li>
+      <li><strong>Correlation ≠ Causation</strong></li>
+      <li>Box plot shows: Q1, Q3, Median, Whiskers & Outliers visually</li>
+    </ul>
+  </div>
+</section>
+
+<div class="section-divider"><div class="section-divider-line"></div><div class="section-divider-text">Unit 6</div><div class="section-divider-line"></div></div>
+
+<!-- ════════ UNIT 6 ════════ -->
+<section class="unit-section" id="unit6">
+  <div class="unit-head">
+    <div class="unit-big-num">06</div>
+    <div class="unit-head-text">
+      <span class="unit-tag u6-tag">Unit 6</span>
+      <h2 class="unit-title">Machine Learning Algorithms</h2>
+      <div class="unit-meta">
+        <span>📚 9 hrs theory</span>
+        <span>🔬 15 hrs practical</span>
+      </div>
+    </div>
+    <div class="unit-marks-badge">
+      <span class="mark-num" style="color:#c84b2f">21</span>
+      <span class="mark-label">marks</span>
+    </div>
+  </div>
+
+  <div class="key-terms-row">
+    <span class="key-term kt-red">Supervised Learning</span>
+    <span class="key-term kt-blue">Unsupervised Learning</span>
+    <span class="key-term kt-green">Reinforcement Learning</span>
+    <span class="key-term kt-red">Regression</span>
+    <span class="key-term kt-red">Classification</span>
+    <span class="key-term kt-blue">Clustering</span>
+    <span class="key-term kt-amber">K-Means</span>
+    <span class="key-term kt-amber">KNN</span>
+    <span class="key-term kt-amber">Decision Tree</span>
+    <span class="key-term kt-purple">Overfitting</span>
+    <span class="key-term kt-purple">Confusion Matrix</span>
+  </div>
+
+  <!-- Interactive ML Visualiser -->
+  <div class="viz-interactive">
+    <div class="viz-interactive-title">⬡ Interactive ML Visualiser — click canvas to add points, choose algorithm</div>
+    <div class="ml-controls">
+      <button class="ml-btn active-ml" onclick="setMLMode('knn')">KNN (K=3)</button>
+      <button class="ml-btn" onclick="setMLMode('linear')">Linear Regression</button>
+      <button class="ml-btn" onclick="setMLMode('kmeans')">K-Means Clustering</button>
+      <button class="ml-btn" onclick="clearPoints()">Clear</button>
+    </div>
+    <div class="ml-viz-canvas-wrap">
+      <canvas id="mlCanvas" onclick="addMLPoint(event)"></canvas>
+    </div>
+    <div class="ml-status" id="mlStatus">Click on the canvas to add data points. Select an algorithm to visualise.</div>
+  </div>
+
+  <div class="cmp-table-wrap">
+    <table class="cmp-table">
+      <tr><th>Type</th><th>Definition</th><th>Input</th><th>Output</th><th>Examples</th></tr>
+      <tr>
+        <td class="emph" style="color:#c84b2f">Supervised</td>
+        <td>Learns from labeled data (input+output pairs)</td>
+        <td>Labeled dataset</td>
+        <td>Class or value</td>
+        <td>Spam detection, price prediction</td>
+      </tr>
+      <tr>
+        <td class="emph" style="color:#2563ae">Unsupervised</td>
+        <td>Finds patterns in unlabeled data</td>
+        <td>Unlabeled dataset</td>
+        <td>Clusters / patterns</td>
+        <td>Customer segmentation</td>
+      </tr>
+      <tr>
+        <td class="emph" style="color:#1a7a4a">Reinforcement</td>
+        <td>Agent learns by reward/punishment</td>
+        <td>Environment + reward</td>
+        <td>Policy / actions</td>
+        <td>Game playing (AlphaGo)</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="code-block">
+    <div class="code-header">
+      <span class="code-dot red"></span><span class="code-dot yellow"></span><span class="code-dot green"></span>
+      <span class="code-filename">ml_models.py</span>
+    </div>
+    <div class="code-body"><pre><span class="kw">from</span> sklearn.model_selection <span class="kw">import</span> train_test_split
+<span class="kw">from</span> sklearn.linear_model <span class="kw">import</span> LinearRegression
+<span class="kw">from</span> sklearn.neighbors <span class="kw">import</span> KNeighborsClassifier
+<span class="kw">from</span> sklearn.cluster <span class="kw">import</span> KMeans
+<span class="kw">from</span> sklearn.metrics <span class="kw">import</span> accuracy_score, confusion_matrix
+
+<span class="cm"># ── Split Data ──────────────────────────────────</span>
+X_train, X_test, y_train, y_test = <span class="fn">train_test_split</span>(
+    X, y, test_size=<span class="nm">0.2</span>, random_state=<span class="nm">42</span>
+)
+
+<span class="cm"># ── Regression ──────────────────────────────────</span>
+reg = <span class="cl">LinearRegression</span>()
+reg.<span class="fn">fit</span>(X_train, y_train)            <span class="cm"># train</span>
+preds = reg.<span class="fn">predict</span>(X_test)         <span class="cm"># predict</span>
+
+<span class="cm"># ── Classification (KNN) ────────────────────────</span>
+clf = <span class="cl">KNeighborsClassifier</span>(n_neighbors=<span class="nm">3</span>)
+clf.<span class="fn">fit</span>(X_train, y_train)
+acc = <span class="fn">accuracy_score</span>(y_test, clf.<span class="fn">predict</span>(X_test))
+<span class="fn">print</span>(<span class="st">f"Accuracy: {acc*100:.1f}%"</span>)   <span class="cm"># e.g. 92.5%</span>
+
+<span class="cm"># ── Confusion Matrix ────────────────────────────</span>
+cm = <span class="fn">confusion_matrix</span>(y_test, clf.<span class="fn">predict</span>(X_test))
+<span class="fn">print</span>(cm)  <span class="cm"># [[TP FP] [FN TN]]</span>
+
+<span class="cm"># ── Clustering (K-Means) ────────────────────────</span>
+km = <span class="cl">KMeans</span>(n_clusters=<span class="nm">3</span>, random_state=<span class="nm">42</span>)
+km.<span class="fn">fit</span>(X)
+<span class="fn">print</span>(km.labels_)                     <span class="cm"># [0, 2, 1, 0, ...]</span></pre>
+    </div>
+  </div>
+
+  <div class="callout remember">
+    <div class="callout-title">⚡ Must Remember</div>
+    <ul class="callout-list">
+      <li>Regression → continuous output; Classification → categorical output</li>
+      <li>K in KNN = number of nearest neighbours; K in K-Means = number of clusters</li>
+      <li>Always split: <strong>80% train / 20% test</strong></li>
+      <li>Overfitting = high train accuracy, low test accuracy; Underfitting = low both</li>
+      <li>Confusion Matrix: TP (correct positive), TN (correct negative), FP (wrong positive), FN (wrong negative)</li>
+    </ul>
+  </div>
+</section>
+
+<div class="section-divider"><div class="section-divider-line"></div><div class="section-divider-text">Unit 7</div><div class="section-divider-line"></div></div>
+
+<!-- ════════ UNIT 7 ════════ -->
+<section class="unit-section" id="unit7">
+  <div class="unit-head">
+    <div class="unit-big-num">07</div>
+    <div class="unit-head-text">
+      <span class="unit-tag u7-tag">Unit 7</span>
+      <h2 class="unit-title">Leveraging Linguistics — NLP</h2>
+      <div class="unit-meta">
+        <span>📚 5 hrs theory</span>
+        <span>🔬 10 hrs practical</span>
+      </div>
+    </div>
+    <div class="unit-marks-badge">
+      <span class="mark-num" style="color:#2563ae">15</span>
+      <span class="mark-label">marks</span>
+    </div>
+  </div>
+
+  <div class="key-terms-row">
+    <span class="key-term kt-blue">NLP</span>
+    <span class="key-term kt-blue">Tokenization</span>
+    <span class="key-term kt-blue">Stop Words</span>
+    <span class="key-term kt-blue">Stemming</span>
+    <span class="key-term kt-blue">Lemmatization</span>
+    <span class="key-term kt-red">Bag of Words</span>
+    <span class="key-term kt-red">TF-IDF</span>
+    <span class="key-term kt-green">Sentiment Analysis</span>
+  </div>
+
+  <!-- NLP Pipeline Interactive -->
+  <div class="viz-interactive">
+    <div class="viz-interactive-title">⬡ NLP Text Pipeline — watch a sentence transform</div>
+    <div style="margin-bottom:0.8rem">
+      <input type="text" id="nlpInput" value="Artificial Intelligence is transforming the world rapidly!" style="width:100%;padding:8px 12px;border-radius:6px;border:1px solid var(--line);font-family:'JetBrains Mono',monospace;font-size:0.78rem;background:var(--paper);color:var(--ink)" oninput="runNLPPipeline()">
+    </div>
+    <div class="nlp-pipeline" id="nlpPipeline">
+      <div class="nlp-stage">
+        <div class="nlp-stage-name">Original</div>
+        <div class="nlp-stage-example" id="nlp0" style="color:#c84b2f">—</div>
+      </div>
+      <div class="nlp-stage-arrow">→</div>
+      <div class="nlp-stage">
+        <div class="nlp-stage-name">Lowercased</div>
+        <div class="nlp-stage-example" id="nlp1">—</div>
+      </div>
+      <div class="nlp-stage-arrow">→</div>
+      <div class="nlp-stage">
+        <div class="nlp-stage-name">Tokens</div>
+        <div class="nlp-stage-example" id="nlp2">—</div>
+      </div>
+      <div class="nlp-stage-arrow">→</div>
+      <div class="nlp-stage">
+        <div class="nlp-stage-name">Stop removed</div>
+        <div class="nlp-stage-example" id="nlp3">—</div>
+      </div>
+      <div class="nlp-stage-arrow">→</div>
+      <div class="nlp-stage">
+        <div class="nlp-stage-name">Stemmed</div>
+        <div class="nlp-stage-example" id="nlp4" style="color:#1a7a4a">—</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic-grid">
+    <div class="topic-cell">
+      <span class="topic-cell-icon">💬</span>
+      <div class="topic-cell-title">What is NLP?</div>
+      <ul class="topic-cell-list">
+        <li>AI for human language understanding</li>
+        <li>Bridge between human text and computers</li>
+        <li>Tools: NLTK, spaCy, HuggingFace Transformers</li>
+        <li>Applications: chatbots, translation, search engines</li>
+      </ul>
+    </div>
+    <div class="topic-cell">
+      <span class="topic-cell-icon">🔄</span>
+      <div class="topic-cell-title">Stemming vs Lemmatization</div>
+      <ul class="topic-cell-list">
+        <li><span class="tag-red">Stemming</span> — chop suffix: "running" → "run"</li>
+        <li>Fast but can give invalid words: "studies" → "studi"</li>
+        <li><span class="tag-blue">Lemmatization</span> — dictionary lookup: "better" → "good"</li>
+        <li>Slower but always produces valid words</li>
+      </ul>
+    </div>
+    <div class="topic-cell">
+      <span class="topic-cell-icon">🗃️</span>
+      <div class="topic-cell-title">Text Representation</div>
+      <ul class="topic-cell-list">
+        <li><span class="tag-red">Bag of Words</span> — word frequency vector; ignores order</li>
+        <li><span class="tag-blue">TF-IDF</span> — penalises very common words; gives importance weight</li>
+        <li><span class="tag-green">Word2Vec</span> — dense word embeddings; captures meaning</li>
+      </ul>
+    </div>
+    <div class="topic-cell">
+      <span class="topic-cell-icon">🤖</span>
+      <div class="topic-cell-title">NLP Applications</div>
+      <ul class="topic-cell-list">
+        <li>Sentiment Analysis — positive/negative/neutral</li>
+        <li>Machine Translation — Google Translate</li>
+        <li>Text Summarisation — auto-summary</li>
+        <li>NER — identify names, places, dates</li>
+        <li>Voice Assistants — Siri, Alexa, Google</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="code-block">
+    <div class="code-header">
+      <span class="code-dot red"></span><span class="code-dot yellow"></span><span class="code-dot green"></span>
+      <span class="code-filename">nlp_basics.py</span>
+    </div>
+    <div class="code-body"><pre><span class="kw">import</span> nltk
+<span class="kw">from</span> nltk.tokenize <span class="kw">import</span> word_tokenize
+<span class="kw">from</span> nltk.corpus <span class="kw">import</span> stopwords
+<span class="kw">from</span> nltk.stem <span class="kw">import</span> PorterStemmer, WordNetLemmatizer
+
+text = <span class="st">"Artificial Intelligence is transforming the world."</span>
+
+<span class="cm"># Step 1: Tokenise</span>
+tokens = <span class="fn">word_tokenize</span>(text.lower())
+<span class="cm"># → ['artificial', 'intelligence', 'is', 'transforming', …]</span>
+
+<span class="cm"># Step 2: Remove stop words</span>
+stop_words = <span class="fn">set</span>(stopwords.<span class="fn">words</span>(<span class="st">'english'</span>))
+filtered = [w <span class="kw">for</span> w <span class="kw">in</span> tokens <span class="kw">if</span> w.isalpha() <span class="kw">and</span> w <span class="kw">not in</span> stop_words]
+<span class="cm"># → ['artificial', 'intelligence', 'transforming', 'world']</span>
+
+<span class="cm"># Step 3: Stem</span>
+ps = <span class="cl">PorterStemmer</span>()
+stems = [ps.<span class="fn">stem</span>(w) <span class="kw">for</span> w <span class="kw">in</span> filtered]
+<span class="cm"># → ['artifici', 'intellig', 'transform', 'world']</span>
+
+<span class="cm"># Step 4: Lemmatize (better)</span>
+lem = <span class="cl">WordNetLemmatizer</span>()
+lemmas = [lem.<span class="fn">lemmatize</span>(w) <span class="kw">for</span> w <span class="kw">in</span> filtered]
+<span class="cm"># → ['artificial', 'intelligence', 'transform', 'world']</span>
+
+<span class="cm"># Step 5: Bag of Words</span>
+<span class="kw">from</span> sklearn.feature_extraction.text <span class="kw">import</span> CountVectorizer
+cv = <span class="cl">CountVectorizer</span>()
+X = cv.<span class="fn">fit_transform</span>([text])
+<span class="fn">print</span>(cv.vocabulary_)</pre>
+    </div>
+  </div>
+
+  <div class="callout remember">
+    <div class="callout-title">⚡ Must Remember</div>
+    <ul class="callout-list">
+      <li>Stop words = very common words with little semantic value (the, is, at)</li>
+      <li>Stemming: fast but inaccurate; Lemmatization: slow but accurate</li>
+      <li>BoW ignores word order; TF-IDF adds importance weighting</li>
+      <li>Rule-based chatbot uses pattern matching; AI chatbot uses ML</li>
+    </ul>
+  </div>
+</section>
+
+<div class="section-divider"><div class="section-divider-line"></div><div class="section-divider-text">Unit 8</div><div class="section-divider-line"></div></div>
+
+<!-- ════════ UNIT 8 ════════ -->
+<section class="unit-section" id="unit8">
+  <div class="unit-head">
+    <div class="unit-big-num">08</div>
+    <div class="unit-head-text">
+      <span class="unit-tag u8-tag">Unit 8</span>
+      <h2 class="unit-title">AI Ethics and Values</h2>
+      <div class="unit-meta">
+        <span>📚 4 hrs theory</span>
+        <span>📝 5+4 marks</span>
+      </div>
+    </div>
+    <div class="unit-marks-badge">
+      <span class="mark-num" style="color:#1a7a4a">9</span>
+      <span class="mark-label">marks</span>
+    </div>
+  </div>
+
+  <div class="key-terms-row">
+    <span class="key-term kt-green">AI Bias</span>
+    <span class="key-term kt-green">Fairness</span>
+    <span class="key-term kt-green">Transparency</span>
+    <span class="key-term kt-green">Accountability</span>
+    <span class="key-term kt-green">Privacy</span>
+    <span class="key-term kt-red">Deepfake</span>
+    <span class="key-term kt-red">Surveillance</span>
+    <span class="key-term kt-blue">Explainable AI</span>
+    <span class="key-term kt-blue">GDPR</span>
+  </div>
+
+  <!-- Ethics Radar Chart -->
+  <div class="viz-interactive" style="display:flex;gap:2rem;align-items:center;flex-wrap:wrap">
+    <div style="flex:1;min-width:260px">
+      <div class="viz-interactive-title">⬡ Responsible AI Pillars</div>
+      <canvas id="ethicsCanvas" width="280" height="280"></canvas>
+    </div>
+    <div style="flex:1;min-width:220px">
+      <div style="display:flex;flex-direction:column;gap:8px" id="ethics-legs">
+        <div style="display:flex;align-items:center;gap:10px;cursor:pointer" onclick="highlightEthics(0)">
+          <div style="width:10px;height:10px;border-radius:50%;background:#c84b2f;flex-shrink:0"></div>
+          <div>
+            <div style="font-weight:600;font-size:0.82rem">Fairness</div>
+            <div style="font-size:0.72rem;color:rgba(15,16,20,0.5)">No discrimination in AI decisions</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;cursor:pointer" onclick="highlightEthics(1)">
+          <div style="width:10px;height:10px;border-radius:50%;background:#2563ae;flex-shrink:0"></div>
+          <div>
+            <div style="font-weight:600;font-size:0.82rem">Transparency</div>
+            <div style="font-size:0.72rem;color:rgba(15,16,20,0.5)">AI decisions must be explainable</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;cursor:pointer" onclick="highlightEthics(2)">
+          <div style="width:10px;height:10px;border-radius:50%;background:#1a7a4a;flex-shrink:0"></div>
+          <div>
+            <div style="font-weight:600;font-size:0.82rem">Accountability</div>
+            <div style="font-size:0.72rem;color:rgba(15,16,20,0.5)">Humans responsible for AI outcomes</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;cursor:pointer" onclick="highlightEthics(3)">
+          <div style="width:10px;height:10px;border-radius:50%;background:#8b3fb5;flex-shrink:0"></div>
+          <div>
+            <div style="font-weight:600;font-size:0.82rem">Privacy</div>
+            <div style="font-size:0.72rem;color:rgba(15,16,20,0.5)">Protect personal data</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;cursor:pointer" onclick="highlightEthics(4)">
+          <div style="width:10px;height:10px;border-radius:50%;background:#c9720e;flex-shrink:0"></div>
+          <div>
+            <div style="font-weight:600;font-size:0.82rem">Safety</div>
+            <div style="font-size:0.72rem;color:rgba(15,16,20,0.5)">AI should not cause harm</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;cursor:pointer" onclick="highlightEthics(5)">
+          <div style="width:10px;height:10px;border-radius:50%;background:#555;flex-shrink:0"></div>
+          <div>
+            <div style="font-weight:600;font-size:0.82rem">Inclusivity</div>
+            <div style="font-size:0.72rem;color:rgba(15,16,20,0.5)">AI should benefit everyone</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic-grid">
+    <div class="topic-cell">
+      <span class="topic-cell-icon">⚖️</span>
+      <div class="topic-cell-title">AI Bias</div>
+      <ul class="topic-cell-list">
+        <li>Unfair results due to biased training data</li>
+        <li>Types: gender, racial, confirmation bias</li>
+        <li>Example: facial recognition fails for dark skin tones</li>
+        <li>Fix: diverse datasets, bias auditing, fairness metrics</li>
+      </ul>
+    </div>
+    <div class="topic-cell">
+      <span class="topic-cell-icon">🔒</span>
+      <div class="topic-cell-title">Privacy & Data Ethics</div>
+      <ul class="topic-cell-list">
+        <li>Collect personal data only with <strong>consent</strong></li>
+        <li><strong>GDPR</strong> (Europe), <strong>PDPB</strong> (India) — data laws</li>
+        <li>Data minimisation — collect only what's needed</li>
+        <li>Right to be forgotten — user can delete their data</li>
+      </ul>
+    </div>
+    <div class="topic-cell">
+      <span class="topic-cell-icon">⚠️</span>
+      <div class="topic-cell-title">AI Misuse & Threats</div>
+      <ul class="topic-cell-list">
+        <li><span class="tag-red">Deepfakes</span> — AI-generated fake videos/images</li>
+        <li>Surveillance capitalism — tracking for profit</li>
+        <li>Autonomous weapons — AI-powered warfare</li>
+        <li>Job displacement — automation replacing humans</li>
+        <li>Misinformation spread via AI-generated content</li>
+      </ul>
+    </div>
+    <div class="topic-cell">
+      <span class="topic-cell-icon">🌱</span>
+      <div class="topic-cell-title">AI for Social Good</div>
+      <ul class="topic-cell-list">
+        <li>Healthcare: early disease detection</li>
+        <li>Education: personalised tutoring, accessibility</li>
+        <li>Climate: deforestation detection, weather modelling</li>
+        <li>Disaster management: early warning systems</li>
+        <li>Accessibility: assistive technology</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout remember">
+    <div class="callout-title">⚡ Must Remember</div>
+    <ul class="callout-list">
+      <li><strong>Bias in → Bias out</strong>: if training data is biased, model will be biased</li>
+      <li>XAI = Explainable AI — ability to explain why the model made a decision</li>
+      <li>India's approach: NITI Aayog's National Strategy for AI (2018) — inclusive & responsible</li>
+      <li>Deepfake detection is an active research area</li>
+    </ul>
+  </div>
+</section>
+
+<!-- FINAL QUICK REF TABLE -->
+<div class="section-divider"><div class="section-divider-line"></div><div class="section-divider-text">Quick Reference</div><div class="section-divider-line"></div></div>
+
+<section class="unit-section" style="margin-bottom:2rem">
+  <h2 style="font-family:'DM Serif Display',serif;font-size:var(--fs-h1);margin-bottom:1.2rem">ML Algorithm Cheat Sheet</h2>
+  <div class="cmp-table-wrap">
+    <table class="cmp-table">
+      <tr><th>Algorithm</th><th>Type</th><th>Output</th><th>Key Param</th><th>sklearn Class</th><th>Use Case</th></tr>
+      <tr><td class="emph">Linear Regression</td><td>Supervised</td><td>Continuous</td><td>coefficients</td><td>LinearRegression()</td><td>Predict prices, marks</td></tr>
+      <tr><td class="emph">KNN</td><td>Supervised</td><td>Class/Value</td><td>n_neighbors=K</td><td>KNeighborsClassifier()</td><td>Species, disease</td></tr>
+      <tr><td class="emph">Decision Tree</td><td>Supervised</td><td>Class</td><td>max_depth</td><td>DecisionTreeClassifier()</td><td>Spam, diagnosis</td></tr>
+      <tr><td class="emph">Naive Bayes</td><td>Supervised</td><td>Class</td><td>prior probs</td><td>GaussianNB()</td><td>Text classification</td></tr>
+      <tr><td class="emph">K-Means</td><td>Unsupervised</td><td>Clusters</td><td>n_clusters=K</td><td>KMeans()</td><td>Segmentation</td></tr>
+    </table>
+  </div>
+</section>
+
+</div><!-- /content -->
+</main>
+
+</div><!-- /wrapper -->
+
+<button class="back-top" id="backTop" onclick="document.getElementById('main-content').scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+// ── MATRIX RAIN IN HERO ──────────────────────────────
+(function() {
+  const canvas = document.getElementById('hero-canvas');
+  const ctx = canvas.getContext('2d');
+  const chars = 'アイウエオカキクケコ01ABCDEFGHIJKLMNabcdefghij∑∫∂λ';
+  let cols, drops;
+  function init() {
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+    cols = Math.floor(canvas.width / 18);
+    drops = Array(cols).fill(0).map(() => Math.random() * -50);
+  }
+  function draw() {
+    ctx.fillStyle = 'rgba(28,30,39,0.07)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = '#c84b2f';
+    ctx.font = '13px "JetBrains Mono", monospace';
+    drops.forEach((y, i) => {
+      const ch = chars[Math.floor(Math.random() * chars.length)];
+      ctx.fillText(ch, i * 18, y * 18);
+      if (y * 18 > canvas.height && Math.random() > 0.975) drops[i] = 0;
+      drops[i] += 0.5;
+    });
+  }
+  init();
+  window.addEventListener('resize', init);
+  setInterval(draw, 60);
+})();
+
+// ── SIDEBAR MARKS ANIMATION ──────────────────────────
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.querySelectorAll('.marks-mini-bar').forEach(bar => {
+      bar.style.width = bar.dataset.w + '%';
+    });
+  }, 400);
+});
+
+// ── SCROLL PROGRESS & NAV ACTIVE ────────────────────
+const mainEl = document.getElementById('main-content');
+const circle = document.getElementById('progress-ring-circle');
+const pctEl = document.getElementById('progress-pct');
+const backTop = document.getElementById('backTop');
+const navLinks = document.querySelectorAll('.nav-link[href^="#unit"]');
+const sections = document.querySelectorAll('.unit-section');
+
+mainEl.addEventListener('scroll', () => {
+  const s = mainEl.scrollTop;
+  const h = mainEl.scrollHeight - mainEl.clientHeight;
+  const pct = Math.round((s / h) * 100);
+  const offset = 75.4 - (75.4 * pct / 100);
+  circle.style.strokeDashoffset = offset;
+  pctEl.textContent = pct + '%';
+  backTop.classList.toggle('show', s > 400);
+});
+
+// Intersection observer for section visibility & nav active
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      const id = entry.target.id;
+      navLinks.forEach(n => n.classList.toggle('active', n.getAttribute('href') === '#' + id));
+    }
+  });
+}, { root: mainEl, threshold: 0.15 });
+
+sections.forEach(s => observer.observe(s));
+// First section visible immediately
+document.querySelector('#unit1').classList.add('visible');
+
+// ── AI HIERARCHY CLICK ───────────────────────────────
+const aiInfos = [
+  'AI (1956) — umbrella term for machines imitating human intelligence. Includes ML, robotics, NLP, expert systems.',
+  'ML — algorithms that learn patterns from data without explicit programming. Subset of AI.',
+  'Deep Learning — neural networks with many hidden layers. Powers image recognition, speech, LLMs.',
+  'Neural Networks — inspired by human neurons. Layers of weighted connections that learn to classify/predict.'
+];
+function showAIInfo(i) {
+  document.getElementById('ai-info-box').textContent = aiInfos[i];
+}
+
+// ── CYCLE STEPS ──────────────────────────────────────
+const cycleDetails = [
+  'Define the problem with 5W1H. Ask: What is the problem? Why does it matter? Who are the stakeholders? Where will the solution be used? When? How will AI solve it?',
+  'Collect relevant, high-quality data. Sources: Kaggle, UCI, government portals, APIs, surveys. Primary = collected by you; Secondary = existing data.',
+  'Explore the data: df.describe(), df.info(), handle missing values, visualise distributions, find patterns and correlations.',
+  'Choose an algorithm, split data (80/20), train the model with fit(), tune hyperparameters (K in KNN, depth in Decision Tree).',
+  'Measure performance: accuracy, confusion matrix, precision, recall. If unsatisfactory, go back to any earlier step and improve.'
+];
+
+function selectStep(i) {
+  document.querySelectorAll('.cycle-step').forEach((el, j) => el.classList.toggle('active-step', i === j));
+  document.getElementById('cycle-detail').textContent = cycleDetails[i];
+}
+
+// ── STATISTICS CANVAS ────────────────────────────────
+function gaussianPDF(x, mu, sigma) {
+  return (1 / (sigma * Math.sqrt(2 * Math.PI))) * Math.exp(-0.5 * ((x - mu) / sigma) ** 2);
+}
+
+function updateStats() {
+  const mu = parseInt(document.getElementById('meanSlider').value);
+  const sigma = parseInt(document.getElementById('stdSlider').value);
+  document.getElementById('meanVal').textContent = mu;
+  document.getElementById('stdVal').textContent = sigma;
+  document.getElementById('s-mean').textContent = mu.toFixed(1);
+  document.getElementById('s-std').textContent = sigma.toFixed(1);
+  document.getElementById('s-range').textContent = (mu - sigma) + '–' + (mu + sigma);
+  drawStats(mu, sigma);
+}
+
+function drawStats(mu, sigma) {
+  const canvas = document.getElementById('statsCanvas');
+  const ctx = canvas.getContext('2d');
+  const W = canvas.offsetWidth * window.devicePixelRatio;
+  const H = 140 * window.devicePixelRatio;
+  canvas.width = W; canvas.height = H;
+  ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+  const w = canvas.offsetWidth;
+  const h = 140;
+  ctx.clearRect(0, 0, w, h);
+
+  const xMin = 0, xMax = 100;
+  const steps = 300;
+  const vals = [];
+  let maxY = 0;
+  for (let i = 0; i <= steps; i++) {
+    const x = xMin + (xMax - xMin) * i / steps;
+    const y = gaussianPDF(x, mu, sigma);
+    vals.push({ x, y });
+    if (y > maxY) maxY = y;
+  }
+
+  const px = x => ((x - xMin) / (xMax - xMin)) * (w - 20) + 10;
+  const py = y => h - 20 - (y / maxY) * (h - 40);
+
+  // Fill ±1σ region
+  ctx.beginPath();
+  ctx.moveTo(px(mu - sigma), h - 20);
+  vals.filter(v => v.x >= mu - sigma && v.x <= mu + sigma).forEach(v => ctx.lineTo(px(v.x), py(v.y)));
+  ctx.lineTo(px(mu + sigma), h - 20);
+  ctx.closePath();
+  ctx.fillStyle = 'rgba(200,75,47,0.12)';
+  ctx.fill();
+
+  // Curve
+  ctx.beginPath();
+  vals.forEach((v, i) => i === 0 ? ctx.moveTo(px(v.x), py(v.y)) : ctx.lineTo(px(v.x), py(v.y)));
+  ctx.strokeStyle = '#c84b2f';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  // Mean line
+  ctx.beginPath();
+  ctx.moveTo(px(mu), py(maxY * 1.05));
+  ctx.lineTo(px(mu), h - 20);
+  ctx.strokeStyle = '#2563ae';
+  ctx.lineWidth = 1.5;
+  ctx.setLineDash([4, 3]);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Labels
+  ctx.fillStyle = '#2563ae';
+  ctx.font = '11px "JetBrains Mono", monospace';
+  ctx.textAlign = 'center';
+  ctx.fillText('μ=' + mu, px(mu), py(maxY) - 6);
+
+  ctx.fillStyle = 'rgba(15,16,20,0.3)';
+  ctx.font = '10px "JetBrains Mono", monospace';
+  ctx.fillText('μ-σ=' + (mu - sigma), px(mu - sigma), h - 6);
+  ctx.fillText('μ+σ=' + (mu + sigma), px(mu + sigma), h - 6);
+}
+
+window.addEventListener('load', updateStats);
+window.addEventListener('resize', updateStats);
+
+// ── ML CANVAS VISUALIZER ────────────────────────────
+let mlPoints = [];
+let mlMode = 'knn';
+let mlCanvas, mlCtx;
+
+function initMLCanvas() {
+  mlCanvas = document.getElementById('mlCanvas');
+  mlCtx = mlCanvas.getContext('2d');
+  mlCanvas.width = mlCanvas.offsetWidth * window.devicePixelRatio;
+  mlCanvas.height = mlCanvas.offsetHeight * window.devicePixelRatio;
+  mlCtx.scale(window.devicePixelRatio, window.devicePixelRatio);
+  drawML();
+}
+
+function setMLMode(mode) {
+  mlMode = mode;
+  document.querySelectorAll('.ml-btn').forEach((btn, i) => {
+    btn.classList.toggle('active-ml', ['knn','linear','kmeans'][i] === mode);
+  });
+  drawML();
+}
+
+function clearPoints() { mlPoints = []; drawML(); document.getElementById('mlStatus').textContent = 'Canvas cleared. Click to add new points.'; }
+
+function addMLPoint(e) {
+  const rect = mlCanvas.getBoundingClientRect();
+  const x = (e.clientX - rect.left) / rect.width;
+  const y = (e.clientY - rect.top) / rect.height;
+  const cls = mlPoints.length % 2 === 0 ? 0 : 1;
+  mlPoints.push({ x, y, cls });
+  drawML();
+  document.getElementById('mlStatus').textContent = `${mlPoints.length} point(s) added. Algorithm: ${mlMode.toUpperCase()}`;
+}
+
+function drawML() {
+  if (!mlCanvas) return;
+  const W = mlCanvas.offsetWidth, H = mlCanvas.offsetHeight;
+  mlCtx.clearRect(0, 0, W, H);
+
+  // Background grid
+  mlCtx.strokeStyle = 'rgba(15,16,20,0.05)';
+  mlCtx.lineWidth = 1;
+  for (let i = 0; i <= 10; i++) {
+    mlCtx.beginPath(); mlCtx.moveTo(i * W / 10, 0); mlCtx.lineTo(i * W / 10, H); mlCtx.stroke();
+    mlCtx.beginPath(); mlCtx.moveTo(0, i * H / 10); mlCtx.lineTo(W, i * H / 10); mlCtx.stroke();
+  }
+
+  if (mlPoints.length < 2) {
+    mlCtx.fillStyle = 'rgba(15,16,20,0.2)';
+    mlCtx.font = '13px "JetBrains Mono", monospace';
+    mlCtx.textAlign = 'center';
+    mlCtx.fillText('Click to add points (alternates between Class A and Class B)', W / 2, H / 2);
+    return;
+  }
+
+  if (mlMode === 'linear' && mlPoints.length >= 2) {
+    // Draw linear regression line
+    const xs = mlPoints.map(p => p.x);
+    const ys = mlPoints.map(p => p.y);
+    const n = xs.length;
+    const sx = xs.reduce((a, b) => a + b, 0);
+    const sy = ys.reduce((a, b) => a + b, 0);
+    const sxy = xs.reduce((s, x, i) => s + x * ys[i], 0);
+    const sx2 = xs.reduce((s, x) => s + x * x, 0);
+    const slope = (n * sxy - sx * sy) / (n * sx2 - sx * sx);
+    const intercept = (sy - slope * sx) / n;
+    mlCtx.beginPath();
+    mlCtx.moveTo(0, intercept * H);
+    mlCtx.lineTo(W, (slope + intercept) * H);
+    mlCtx.strokeStyle = '#c84b2f';
+    mlCtx.lineWidth = 2;
+    mlCtx.stroke();
+    mlCtx.fillStyle = '#c84b2f';
+    mlCtx.font = '11px "JetBrains Mono", monospace';
+    mlCtx.textAlign = 'left';
+    mlCtx.fillText('y = ' + slope.toFixed(2) + 'x + ' + intercept.toFixed(2), 10, 20);
+  }
+
+  if (mlMode === 'kmeans' && mlPoints.length >= 2) {
+    const K = Math.min(3, mlPoints.length);
+    // Simple k-means: pick random centroids from points
+    let centroids = mlPoints.slice(0, K).map(p => ({ x: p.x, y: p.y }));
+    for (let iter = 0; iter < 10; iter++) {
+      const clusters = Array(K).fill(null).map(() => []);
+      mlPoints.forEach(p => {
+        let minD = Infinity, minK = 0;
+        centroids.forEach((c, ki) => {
+          const d = (p.x - c.x) ** 2 + (p.y - c.y) ** 2;
+          if (d < minD) { minD = d; minK = ki; }
+        });
+        clusters[minK].push(p);
+      });
+      centroids = clusters.map((cl, ki) => cl.length
+        ? { x: cl.reduce((s, p) => s + p.x, 0) / cl.length, y: cl.reduce((s, p) => s + p.y, 0) / cl.length }
+        : centroids[ki]
+      );
+    }
+    const colors = ['rgba(200,75,47,0.15)', 'rgba(37,99,174,0.15)', 'rgba(26,122,74,0.15)'];
+    const ccolors = ['#c84b2f', '#2563ae', '#1a7a4a'];
+    // Assign each point to a cluster
+    mlPoints.forEach(p => {
+      let minD = Infinity, minK = 0;
+      centroids.forEach((c, ki) => { const d = (p.x - c.x) ** 2 + (p.y - c.y) ** 2; if (d < minD) { minD = d; minK = ki; } });
+      mlCtx.beginPath();
+      mlCtx.arc(p.x * W, p.y * H, 7, 0, Math.PI * 2);
+      mlCtx.fillStyle = ccolors[minK];
+      mlCtx.fill();
+      mlCtx.strokeStyle = 'white';
+      mlCtx.lineWidth = 1.5;
+      mlCtx.stroke();
+    });
+    centroids.forEach((c, ki) => {
+      mlCtx.beginPath();
+      mlCtx.arc(c.x * W, c.y * H, 11, 0, Math.PI * 2);
+      mlCtx.fillStyle = ccolors[ki];
+      mlCtx.fill();
+      mlCtx.strokeStyle = 'white';
+      mlCtx.lineWidth = 2;
+      mlCtx.stroke();
+      mlCtx.fillStyle = 'white';
+      mlCtx.font = 'bold 9px Arial';
+      mlCtx.textAlign = 'center';
+      mlCtx.fillText('C' + (ki + 1), c.x * W, c.y * H + 3);
+    });
+    return;
+  }
+
+  if (mlMode === 'knn' && mlPoints.length >= 2) {
+    const K = Math.min(3, mlPoints.length - 1);
+    const resolution = 25;
+    for (let gx = 0; gx < resolution; gx++) {
+      for (let gy = 0; gy < resolution; gy++) {
+        const qx = (gx + 0.5) / resolution;
+        const qy = (gy + 0.5) / resolution;
+        const dists = mlPoints.map((p, i) => ({ i, d: (p.x - qx) ** 2 + (p.y - qy) ** 2, cls: p.cls }));
+        dists.sort((a, b) => a.d - b.d);
+        const votes = dists.slice(0, K).reduce((s, p) => s + p.cls, 0);
+        const cls = votes > K / 2 ? 1 : 0;
+        mlCtx.fillStyle = cls === 0 ? 'rgba(200,75,47,0.08)' : 'rgba(37,99,174,0.08)';
+        mlCtx.fillRect(gx * W / resolution, gy * H / resolution, W / resolution + 1, H / resolution + 1);
+      }
+    }
+  }
+
+  // Draw points
+  const ptColors = ['#c84b2f', '#2563ae'];
+  const ptLabels = ['A', 'B'];
+  mlPoints.forEach(p => {
+    mlCtx.beginPath();
+    mlCtx.arc(p.x * W, p.y * H, 6, 0, Math.PI * 2);
+    mlCtx.fillStyle = ptColors[p.cls];
+    mlCtx.fill();
+    mlCtx.strokeStyle = 'white';
+    mlCtx.lineWidth = 1.5;
+    mlCtx.stroke();
+    mlCtx.fillStyle = 'white';
+    mlCtx.font = 'bold 8px Arial';
+    mlCtx.textAlign = 'center';
+    mlCtx.fillText(ptLabels[p.cls], p.x * W, p.y * H + 3);
+  });
+}
+
+window.addEventListener('load', initMLCanvas);
+window.addEventListener('resize', initMLCanvas);
+
+// ── NLP PIPELINE ─────────────────────────────────────
+const stopWords = new Set(['is','the','a','an','are','was','were','be','been','being','have','has','had','do','does','did','will','would','shall','should','may','might','must','can','could','i','you','he','she','it','we','they','them','their','this','that','these','those','and','but','or','so','at','by','for','in','of','on','to','up','as','into','through','about','with']);
+
+function simpleStem(w) {
+  w = w.toLowerCase();
+  const rules = [['ing',''],['tion','t'],['ness',''],['ment',''],['ful',''],['ious',''],['ly',''],['ies','y'],['es',''],['ed',''],['er',''],['est','']];
+  for (const [suf, rep] of rules) {
+    if (w.endsWith(suf) && w.length - suf.length >= 3) return w.slice(0, w.length - suf.length) + rep;
+  }
+  return w;
+}
+
+function runNLPPipeline() {
+  const text = document.getElementById('nlpInput').value;
+  document.getElementById('nlp0').textContent = text.length > 38 ? text.slice(0, 38) + '…' : text;
+  const lower = text.toLowerCase();
+  document.getElementById('nlp1').textContent = lower.length > 38 ? lower.slice(0, 38) + '…' : lower;
+  const tokens = lower.replace(/[^\w\s]/g, '').split(/\s+/).filter(Boolean);
+  document.getElementById('nlp2').textContent = tokens.slice(0, 5).join(' | ') + (tokens.length > 5 ? ' …' : '');
+  const filtered = tokens.filter(t => !stopWords.has(t));
+  document.getElementById('nlp3').textContent = filtered.slice(0, 5).join(' | ') + (filtered.length > 5 ? ' …' : '');
+  const stems = filtered.map(simpleStem);
+  document.getElementById('nlp4').textContent = stems.slice(0, 5).join(' | ') + (stems.length > 5 ? ' …' : '');
+}
+window.addEventListener('load', runNLPPipeline);
+
+// ── ETHICS RADAR ─────────────────────────────────────
+const ETHICS_COLORS = ['#c84b2f','#2563ae','#1a7a4a','#8b3fb5','#c9720e','#555'];
+const ETHICS_LABELS = ['Fairness','Transparency','Accountability','Privacy','Safety','Inclusivity'];
+const ETHICS_VALUES = [0.85, 0.78, 0.9, 0.82, 0.88, 0.75];
+let activeEthicsIdx = -1;
+
+function drawEthicsRadar() {
+  const canvas = document.getElementById('ethicsCanvas');
+  const ctx = canvas.getContext('2d');
+  const S = 280;
+  canvas.width = S; canvas.height = S;
+  const cx = S / 2, cy = S / 2, r = 100;
+  const n = ETHICS_LABELS.length;
+  ctx.clearRect(0, 0, S, S);
+
+  // Grid rings
+  [0.25, 0.5, 0.75, 1].forEach(f => {
+    ctx.beginPath();
+    for (let i = 0; i < n; i++) {
+      const a = (i / n) * Math.PI * 2 - Math.PI / 2;
+      const x = cx + Math.cos(a) * r * f;
+      const y = cy + Math.sin(a) * r * f;
+      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    }
+    ctx.closePath();
+    ctx.strokeStyle = 'rgba(15,16,20,0.08)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  });
+
+  // Spokes
+  for (let i = 0; i < n; i++) {
+    const a = (i / n) * Math.PI * 2 - Math.PI / 2;
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.lineTo(cx + Math.cos(a) * r, cy + Math.sin(a) * r);
+    ctx.strokeStyle = 'rgba(15,16,20,0.08)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  }
+
+  // Filled polygon
+  ctx.beginPath();
+  ETHICS_VALUES.forEach((v, i) => {
+    const a = (i / n) * Math.PI * 2 - Math.PI / 2;
+    const x = cx + Math.cos(a) * r * v;
+    const y = cy + Math.sin(a) * r * v;
+    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+  });
+  ctx.closePath();
+  ctx.fillStyle = 'rgba(200,75,47,0.12)';
+  ctx.fill();
+  ctx.strokeStyle = '#c84b2f';
+  ctx.lineWidth = 1.5;
+  ctx.stroke();
+
+  // Dots + labels
+  ETHICS_VALUES.forEach((v, i) => {
+    const a = (i / n) * Math.PI * 2 - Math.PI / 2;
+    const x = cx + Math.cos(a) * r * v;
+    const y = cy + Math.sin(a) * r * v;
+    const lx = cx + Math.cos(a) * (r + 22);
+    const ly = cy + Math.sin(a) * (r + 22);
+
+    ctx.beginPath();
+    ctx.arc(x, y, activeEthicsIdx === i ? 6 : 4, 0, Math.PI * 2);
+    ctx.fillStyle = ETHICS_COLORS[i];
+    ctx.fill();
+
+    ctx.fillStyle = activeEthicsIdx === i ? ETHICS_COLORS[i] : 'rgba(15,16,20,0.5)';
+    ctx.font = activeEthicsIdx === i ? 'bold 10px "Outfit", sans-serif' : '10px "Outfit", sans-serif';
+    ctx.textAlign = lx > cx + 5 ? 'left' : lx < cx - 5 ? 'right' : 'center';
+    ctx.fillText(ETHICS_LABELS[i], lx, ly + 3);
+  });
+}
+
+function highlightEthics(i) {
+  activeEthicsIdx = activeEthicsIdx === i ? -1 : i;
+  drawEthicsRadar();
+}
+
+window.addEventListener('load', drawEthicsRadar);
+</script>
+</body>
+</html>

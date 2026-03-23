@@ -30,7 +30,7 @@ def main():
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
     
     # Path to the HTML file
-    html_file_path = os.path.join(BASE_DIR, "cbse_ai_class12_v3.html")
+    html_file_path = os.path.join(BASE_DIR, "class11_ai_oneshot_v2.html")
     
     if os.path.exists(html_file_path):
         with open(html_file_path, 'r', encoding='utf-8') as f:
